@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap'); 
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Muli', sans-serif;
+  overflow: hidden;
+  margin: 0;
+  background: #111;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  padding: 0 20px;  /* параметр1 параметр2 параметр3 параметр4 (по часовой стрелке)*/
+  z-index: 20;
+  
+  /* mix-blend-mode: overlay; */
+}
+
+.slide{
+  height: 80vh; /* 80% от видимой части экрана*/
+  border-radius: 15px;
+  margin:10px;
+  cursor: pointer;
+  color:#fff;
+  flex:1; /* пропорциональной растяжение*/
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  transition: all 500ms ease-in-out;
+
+  z-index: 10;
+}
+
+.slide h3{
+  position: absolute;
+  font-size: 24px;
+  bottom: 20px;
+  left:20px;
+  margin: 0;
+  opacity: 0;
+}
+.slide.active{
+  flex:15;
+}
+.slide.active h3{
+  opacity: 1;
+  transition: opacity 0.5s ease-in 0.8s;
+  /* transform: translate(3px, 2px) rotate(-20deg); */
+}
+
+/* .overlay{
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+  background-clip:var(--overlay-color);
+  mix-blend-mode: overlay;
+} */
+video{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  opacity: 0.38;
+  
+}
