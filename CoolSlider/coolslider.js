@@ -7,6 +7,7 @@ const container = document.querySelector('.container');
 
 let activeSlideIndex = 0;
 
+const audioList=['audio/yellow.mp3','audio/violet.mp3','audio/red.mp3','audio/green.mp3'];
 
 // console.log(upButton);
 // console.log(downButton);
@@ -39,12 +40,20 @@ function changeSlide(direction){
         if(activeSlideIndex===slidesCount){
             activeSlideIndex=0;
         }
+            //Подключаю музыку
+    let audio=document.getElementById('player');
+    audio.src=audioList[activeSlideIndex];
+    audio.play();
     }
     else if(direction === 'down'){
         activeSlideIndex--;
         if(activeSlideIndex<0){
             activeSlideIndex=slidesCount-1;
         }
+            //Подключаю музыку
+    let audio=document.getElementById('player');
+    audio.src=audioList[activeSlideIndex];
+    audio.play();
     }
     // console.log(activeSlideIndex);
     const height = container.clientHeight;
