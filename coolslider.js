@@ -18,7 +18,7 @@ sidebar.style.top=`-${(slidesCount-1) * 100}vh`;
 
 
 upButton.addEventListener('click',()=>{
-    console.log('upButton');
+    // console.log('upButton');
 
     changeSlide('up');
 
@@ -28,12 +28,22 @@ upButton.addEventListener('click',()=>{
 })
 
 downButton.addEventListener('click',()=>{
-    console.log('downButton');
+    // console.log('downButton');
 
     changeSlide('down');
 
 })
+document.addEventListener('keydown',event=>{
 
+    if( event.key == 'ArrowUp')
+    {
+        changeSlide('up');
+    }
+    else if( event.key == 'ArrowDown')
+    {
+        changeSlide('down');
+    }
+})
 function changeSlide(direction){
     if (direction === 'up'){
         activeSlideIndex++;
