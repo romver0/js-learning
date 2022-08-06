@@ -45,8 +45,6 @@ document.addEventListener('keydown',event=>{
         changeSlide('down');
     }
 })
-
-
 function changeSlide(direction){
     if (direction === 'up'){
         activeSlideIndex++;
