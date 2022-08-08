@@ -31,30 +31,21 @@ for(let i=0;i<SQUARES_NUMBER;i++){
    square.classList.add('square');
     board.append(square);
 
-    square.addEventListener('mouseover',()=>{
-        // console.log('mouseover');
-        setColor(square);
-    }) // слушатель событий
-    // square.addEventListener('mouseout',()=>{
-    //     // console.log('mouseout');
-    //     nosetColor(square);
-    // })
-    square.addEventListener('mouseleave',()=>{
-        // console.log('mouseout');
-        removesetColor(square);
-    })
+    square.addEventListener('mouseover',setColor) 
+    square.addEventListener('mouseleave',removesetColor)
 }
 
-function setColor(element){
+function setColor(event){
+    const element=event.target;
     element.style.backgroundColor=`${getRandomColor()}`;
     element.style.boxShadow=`0 0 5px ${getRandomColor()},0 0 5px ${getRandomColor()}`;
 }
-function removesetColor(element){
+function removesetColor(event){
+    const element=event.target;
     element.style.backgroundColor='#1d1d1d';
     element.style.boxShadow=``;
 }
 
 function getRandomColor(){
-    const index = Math.floor(Math.random()*colors.length); //Math.floor()- округленеи в меньшую сторону
-    return colors[index];
+    return colors[Math.floor(Math.random()*colors.length)];
 }
