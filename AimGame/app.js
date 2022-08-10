@@ -7,6 +7,7 @@ const board = document.querySelector('#board');
 
 let time = 0;
 let score = 0;
+let misses = 0;
 
 console.log(screens);
 // console.log(timeBtn);
@@ -34,10 +35,14 @@ timeBtn.addEventListener('click',function(event){
 })
 board.addEventListener('click',event=>{
     if(event.target.classList.contains('circle')){
-        console.log("event.target.classList.contains('circle')");
+        // console.log("event.target.classList.contains('circle')");
         score++;
         event.target.remove(); //удаление блока после клика
         createRandomCircle();
+    }
+    else{
+        misses++;
+        console.log('misses =',misses)
     }
     
 })
@@ -84,20 +89,61 @@ function finishGame(){
     // board.innerHTML=`<h1>Ваш счёт:<span style="color:"> ${score}</span></h1>`;
     board.innerHTML=`<h1>Ваш счёт: ${score}`;
     timeElement.parentNode.remove();
+    // console.log('score = ',score);
+    // console.log('misses = ',misses);
     if(score==0){
-        board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
-        <span>(Ты можешь лучше)&#129303</span>`;
-        // board.innerHTML+='(Ты можешь лучше)';
+        // if(misses>0){
+        //     board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
+        //     <span>(Ты можешь лучше)&#129303</span>
+        //     <span>Ты косой на ${Math.round((misses/(misses+score))*100,-1)}%</span>
+        //     <span>Ты даже не пытался</span>
+        //     `;
+        // }
+        // else if(misses==0){
+        //     board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
+        //     <span>(Ты можешь лучше)&#129303</span>
+        //     <span>Ты косой на ${Math.round((misses/(misses+score))*100,-1)}%</span>
+        //     `;
+        // }
+        if(misses>0){
+            board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
+            <h3 id="comment">Ты косой на 100%</h3>
+            `;
+        }
+        else{
+            board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
+            <h3 id="comment">Ты даже не пытался</h3>
+            `;
+        }
         
     }
     else if(0<score<5){
+        if(misses>0 && score>0){
         board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
-        <span>(Ого,у тебя хорошо получается)&#128154</span>`;
+        <h2>(Ого,у тебя хорошо получается)&#128154</h2>
+        <h3 id="comment">Ты косой на ${Math.round((misses/(misses+score))*100,-1)}%</h3>
+        `;
+        }
+        else if(misses==0 && score>0){
+        board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
+        <h2>(Ого,у тебя хорошо получается)&#128154</h2>
+        <h3 id="comment">Вот это точность 100%</h3>
+        `;
+        }
     }
     else if (score>7){
-        board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
-        <span>(Без комментариев,тебе нет равных)&#128163&#128163&#128163</span>`;
-        
+        if(misses>0 && score>7){
+            board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
+        <h2>(Без комментариев,тебе нет равных)&#128163&#128163&#128163</h2>
+        <h3 id="comment">Ты косой на ${Math.round((misses/(misses+score))*100,-1)}%</h3>
+        `;
+        }
+        else if(misses==0 && score>7){
+            board.innerHTML=`<h1>Ваш счёт: ${score}</h1>
+            <h2>(Без комментариев,тебе нет равных)&#128163&#128163&#128163</h2>
+            <h3 id="comment">Вот это точность 100%</h3>
+            `;
+        }
     }
     // again = document.querySelector('#again');
     // console.log('again = ',again);

@@ -112,3 +112,7 @@ h1 {
 
   100% { transform: rotate(360deg);}
 }
+
+#comment{
+  color:orange;
+}
